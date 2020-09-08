@@ -81,7 +81,7 @@ def generate_midi(model, dataset, vocab_set, output_filename="output.mid"):
             result = int_to_note[index]
             prediction_output.append(result)
 
-            new_note = torch.tensor(index/len(s)).view(1)    
+            new_note = torch.tensor(index/len(vocab_set)).view(1)    
             pattern = torch.cat((pattern, new_note))
             pattern = pattern[1:len(pattern)]
 

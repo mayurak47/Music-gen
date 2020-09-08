@@ -91,28 +91,28 @@ def main():
         scheduler.step()
         print('\nTrain loss: {:.4f}'.format(train_loss_total_avg))
         print('Train accuracy: {:.4f}'.format(train_accuracy))
-        # torch.save(model.state_dict(), "/content/drive/My Drive/epochCNN"+str(epoch)) 
+
         print('Val loss: {:.4f}'.format(val_loss_total_avg))
-        print('Val accuracy: {:.4f}'.format(val_accuracy))
+        print('Val accuracy\n: {:.4f}'.format(val_accuracy))
 
         torch.save(model.state_dict(), "weights/model_params_epoch"+str(epoch))
         torch.save(optimizer.state_dict(), "weights/optim_params_epoch"+str(epoch))
 
     plt.xlabel("Epoch")
     plt.ylabel("Accuracy")
-    plt.plot(range(len(train_accuracies)), train_accuracies)
-    plt.plot(range(len(val_accuracies)), val_accuracies)
+    plt.plot(range(1, len(train_accuracies)+1), train_accuracies)
+    plt.plot(range(1, len(val_accuracies)+1), val_accuracies)
     plt.savefig("plots/accuracies.png")
     plt.close()
 
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
-    plt.plot(range(len(train_losses)), train_losses)
-    plt.plot(range(len(val_losses)), val_losses)
+    plt.plot(range(1, len(train_losses)+1), train_losses)
+    plt.plot(range(1, len(val_losses)+1), val_losses)
     plt.savefig("plots/losses.png")
     plt.close()
-    
-    generate_midi(model, val_ds, vocab_set, output_filename="output.mid"):
+
+    generate_midi(model, val_ds, vocab_set, output_filename="output.mid")
 
 if __name__ == "__main__":
     main()
