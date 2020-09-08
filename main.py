@@ -39,7 +39,7 @@ def main():
     train_accuracies = []
     val_accuracies = []
 
-    for epoch in tqdm(range(1, 10+1)):
+    for epoch in tqdm(range(1, epochs+1)):
 
         model.train()
         train_loss_total = 0.0
@@ -89,7 +89,7 @@ def main():
         val_losses.append(val_loss_total_avg)
 
         scheduler.step()
-        print('Train loss: {:.4f}'.format(train_loss_total_avg))
+        print('\nTrain loss: {:.4f}'.format(train_loss_total_avg))
         print('Train accuracy: {:.4f}'.format(train_accuracy))
         # torch.save(model.state_dict(), "/content/drive/My Drive/epochCNN"+str(epoch)) 
         print('Val loss: {:.4f}'.format(val_loss_total_avg))
@@ -98,17 +98,21 @@ def main():
         torch.save(model.state_dict(), "weights/model_params_epoch"+str(epoch))
         torch.save(optimizer.state_dict(), "weights/optim_params_epoch"+str(epoch))
 
-        plt.xlabel("Epoch")
-        plt.ylabel("Accuracy")
-        plt.plot(range(len(train_accuracies)), train_accuracies)
-        plt.plot(range(len(val_accuracies)), val_accuracies)
-        plt.savefig("plots/accuracies.png")
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy")
+    plt.plot(range(len(train_accuracies)), train_accuracies)
+    plt.plot(range(len(val_accuracies)), val_accuracies)
+    plt.savefig("plots/accuracies.png")
+    plt.close()
 
-        plt.xlabel("Epoch")
-        plt.ylabel("Loss")
-        plt.plot(range(len(train_losses)), train_losses)
-        plt.plot(range(len(val_losses)), val_losses)
-        plt.savefig("plots/losses.png")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.plot(range(len(train_losses)), train_losses)
+    plt.plot(range(len(val_losses)), val_losses)
+    plt.savefig("plots/losses.png")
+    plt.close()
+    
+    generate_midi(model, val_ds, vocab_set, output_filename="output.mid"):
 
 if __name__ == "__main__":
     main()
