@@ -14,10 +14,10 @@ Each midi file was split into its constituent notes or chords, and a dictionary 
 The model consists of multiple Conv1D layers with gradually decreasing kernel sizes, with a couple of MaxPool1D layers in between. The output is further processed using fully connected layers, which then output the probabilities for the next note or chord. Categorical crossentropy is used as the loss function, with an Adam optimizer.
 
 ## Results
-A sequence of notes from the validation set was provided as input. [Here](https://gofile.io/d/oky9UH) is a sample output. While the audio sounds much more dynamic and uses a wider range of notes than the LSTM model's output, it is obvious that the model has trouble capturing discernible long-term dependencies.
+A sequence of notes from the validation set was provided as input. [Here](https://gofile.io/d/JxLsdC) is a sample output. While the audio sounds much more dynamic and uses a wider range of notes than the LSTM model's output, it is obvious that the model has trouble capturing discernible long-term dependencies.
 
 ## Future work
 It might be worth trying a hybrid CNN-LSTM model, exploiting the advantages of both models. The features learnt by the convolutional layers could be run through LSTM units.
 
 ## References
-[Sigurður Skúli's tutorial](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5)
+[How to Generate Music using a LSTM Neural Network in Keras](https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5)
